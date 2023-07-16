@@ -279,7 +279,95 @@ var locations = [
 		]
 	}
 ];
-
+const mapStyleSilver = [
+	{
+		elementType: 'geometry',
+		stylers: [{ color: '#e0e4ec' }]
+	},
+	{
+		elementType: 'labels.icon',
+		stylers: [{ visibility: 'off' }]
+	},
+	{
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#616161' }]
+	},
+	{
+		elementType: 'labels.text.stroke',
+		stylers: [{ color: '#f5f5f5' }]
+	},
+	{
+		featureType: 'administrative.land_parcel',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#bdbdbd' }]
+	},
+	{
+		featureType: 'poi',
+		elementType: 'geometry',
+		stylers: [{ color: '#eeeeee' }]
+	},
+	{
+		featureType: 'poi',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#757575' }]
+	},
+	{
+		featureType: 'poi.park',
+		elementType: 'geometry',
+		stylers: [{ color: '#e5e5e5' }]
+	},
+	{
+		featureType: 'poi.park',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#9e9e9e' }]
+	},
+	{
+		featureType: 'road',
+		elementType: 'geometry',
+		stylers: [{ color: '#ffffff' }]
+	},
+	{
+		featureType: 'road.arterial',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#757575' }]
+	},
+	{
+		featureType: 'road.highway',
+		elementType: 'geometry',
+		stylers: [{ color: '#dadada' }]
+	},
+	{
+		featureType: 'road.highway',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#616161' }]
+	},
+	{
+		featureType: 'road.local',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#9e9e9e' }]
+	},
+	{
+		featureType: 'transit.line',
+		elementType: 'geometry',
+		stylers: [{ color: '#e5e5e5' }]
+	},
+	{
+		featureType: 'transit.station',
+		elementType: 'geometry',
+		stylers: [{ color: '#eeeeee' }]
+	},
+	{
+		featureType: 'water',
+		elementType: 'geometry',
+		stylers: [{ color: '#f8f8fa' }]
+	},
+	{
+		featureType: 'water',
+		elementType: 'labels.text.fill',
+		stylers: [{ color: '#9e9e9e' }]
+	}
+];
+console.log(locations);
 function initMap() {
 	// polyline
 	let myLatLng = { lat: 20.025145019607272, lng: 38.82076434695159 };
@@ -289,21 +377,31 @@ function initMap() {
 		center: myLatLng
 	});
 
-	var infoWindow = new google.maps.InfoWindow();
+	// set map style
+	map.setOptions({ styles: mapStyleSilver, minZoom: 2 });
+
 	var flightPlanCoordinates = [];
+	var infoWindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
 
 	// pin locations
 	new google.maps.Marker({
+		map: map,
 		position: myLatLng,
-		label: 'ME',
-		map: map
+		label: 'ME'
+		// icon: {
+		// 	anchor: new google.maps.Point(16, 16), // center icon on end of polyline
+		// 	origin: new google.maps.Point(0, 0),
+		// 	scaledSize: new google.maps.Size(32, 32),
+		// 	size: new google.maps.Size(64, 64),
+		// 	url: 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/map-marker-icon.png'
+		// }
 	});
 
 	locations.forEach(function (item, index) {
-		let marker = new google.maps.Marker({
-			position: new google.maps.LatLng(item.lat, item.lng),
-			map: map
+		const marker = new google.maps.Marker({
+			map: map,
+			position: new google.maps.LatLng(item.lat, item.lng)
 		});
 
 		item.pathTo.forEach(function (path) {
@@ -324,15 +422,17 @@ function initMap() {
 		);
 	});
 
-	map.fitBounds(bounds);
-
-	var flightPath = new google.maps.Polyline({
+	const polyline = new google.maps.Polyline({
 		map: map,
 		path: flightPlanCoordinates,
 		strokeColor: '#FF0000',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
+	for (let i = 0; i < polyline.getPath().getLength(); i++) {
+		bounds.extend(polyline.getPath().getAt(i));
+	}
+	map.fitBounds(bounds);
 }
 
 window.initMap = initMap;
