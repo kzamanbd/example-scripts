@@ -378,7 +378,7 @@ function initMap() {
 	});
 
 	// set map style
-	map.setOptions({ styles: mapStyleSilver, minZoom: 2 });
+	map.setOptions({ styles: mapStyleSilver, minZoom: 3 });
 
 	var flightPlanCoordinates = [];
 	var infoWindow = new google.maps.InfoWindow();
