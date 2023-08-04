@@ -32,7 +32,7 @@ const dateFormat = (date) => {
 				return `${years} years ago`;
 			}
 		},
-		format: () => {
+		format: (format = 'LL') => {
 			return {
 				toString: () => date,
 				toNumber: () => new Date(date).getTime(),
@@ -43,4 +43,5 @@ const dateFormat = (date) => {
 };
 
 console.log(dateFormat('2020-01-01').format().toDate());
-console.log(dateFormat(new Date().getTime() - 50000).fromNow());
+console.log(dateFormat());
+//
