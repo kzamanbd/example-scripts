@@ -5,23 +5,22 @@
  * @return {Function}
  */
 var cancellable = function (fn, args, t) {
-	const timer = setTimeout(() => {
-        fn(...args);
-    }, t)
+    fn(...args);
+	const timer = setInterval(() => {
+		fn(...args);
+	}, t);
 
 	return function () {
-        clearTimeout(timer)
+		clearInterval(timer);
 	};
 };
 
-// input ✅
-
 const result = [];
 
-const fn = (x) => x * 5;
-const args = [2],
+const fn = (x) => x * 2;
+const args = [4],
 	t = 20,
-	cancelT = 50;
+	cancelT = 110;
 
 const start = performance.now();
 
@@ -32,14 +31,17 @@ const log = (...argsArr) => {
 
 const cancel = cancellable(log, args, t);
 
-const maxT = Math.max(t, cancelT);
-
 setTimeout(() => {
 	cancel();
 }, cancelT);
 
 setTimeout(() => {
-	console.log(result); // [{"time":20,"returned":10}]
-}, maxT + 15);
-
-console.log(maxT, t)
+	console.log(result); // [
+	//      {"time":0,"returned":8},
+	//      {"time":20,"returned":8},
+	//      {"time":40,"returned":8},
+	//      {"time":60,"returned":8},
+	//      {"time":80,"returned":8},
+	//      {"time":100,"returned":8}
+	//  ]
+}, cancelT + t + 15);
