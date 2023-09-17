@@ -1,0 +1,15 @@
+{
+  "name": "example-scripts",
+  "version": "1.0.0",
+  "description": "This is a collection of example scripts that I have written for various purposes. I will try to keep this updated as I write more scripts.",
+  "main": "barcode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bwip-js": "^4.1.1"
+  }
+}
