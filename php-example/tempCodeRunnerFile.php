@@ -1,0 +1,4 @@
+<?php
+exampleFunction();
+// exampleFunction();
+// exampleFunction();

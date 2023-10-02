@@ -1,15 +1,19 @@
 {
-  "name": "example-scripts",
-  "version": "1.0.0",
-  "description": "This is a collection of example scripts that I have written for various purposes. I will try to keep this updated as I write more scripts.",
-  "main": "barcode.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bwip-js": "^4.1.1"
-  }
+	"name": "example-scripts",
+	"version": "1.0.0",
+	"description": "This is a collection of example scripts that I have written for various purposes. I will try to keep this updated as I write scripts.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "npx tsc -w",
+		"build": "npx tsc"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bwip-js": "^4.1.1",
+		"color-convert": "^2.0.1",
+		"color-namer": "^1.4.0",
+		"typescript": "^5.2.2"
+	}
 }
