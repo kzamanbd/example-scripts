@@ -1,2 +1,4 @@
 /node_modules
-/build
+phitron/input.txt
+phitron/output.txt
+phitron/*.exe

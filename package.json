@@ -1,8 +1,7 @@
 {
 	"name": "example-scripts",
 	"version": "1.0.0",
-	"description": "This is a collection of example scripts that I have written for various purposes. I will try to keep this updated as I write scripts.",
-	"main": "index.js",
+	"description": "This is a collection of example scripts that I have written for various purposes.",
 	"scripts": {
 		"dev": "npx tsc -w",
 		"build": "npx tsc"

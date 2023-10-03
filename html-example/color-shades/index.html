@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shades Generator</title>
+	</head>
+	<body>
+		<input type="color" id="color-picker" />
+		
+		<script type="module" defer>
+			import * as colors from "../../build/colors.js";
+			const colorPicker = document.getElementById("color-picker");
+			colorPicker.addEventListener("change", (e) => {
+				const color = e.target.value;
+				console.log("color", color);
+			});
+		</script>
+	</body>
+</html>
