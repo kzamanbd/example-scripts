@@ -2,6 +2,8 @@
     "files.autoSave": "afterDelay",
     "github.copilot.enable": {
         "javascript": false,
+        "c": false,
+        "cpp": false
     },
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "on"
 }

@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Shades Generator</title>
-	</head>
-	<body>
-		<input type="color" id="color-picker" />
-		
-		<script type="module" defer>
-			import * as colors from "../../build/colors.js";
-			const colorPicker = document.getElementById("color-picker");
-			colorPicker.addEventListener("change", (e) => {
-				const color = e.target.value;
-				console.log("color", color);
-			});
-		</script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shades Generator</title>
+        <style>
+            .input-box {
+                height: 28px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+            .color-picker {
+                height: 32px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="display: flex; align-items: center">
+            <input type="text" placeholder="#" class="input-box" />
+            <input type="color" id="color-picker" class="color-picker" />
+        </div>
+
+        <script type="module">
+            import colorShades from "./colors.js";
+            console.log("colorShades", colorShades.colorShades);
+            const colorPicker = document.getElementById("color-picker");
+            colorPicker.addEventListener("input", (e) => {
+                const color = e.target.value;
+                console.log("color", color);
+                const inputBox = document.querySelector(".input-box");
+                inputBox.value = color;
+            });
+        </script>
+    </body>
 </html>

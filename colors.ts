@@ -1,6 +1,4 @@
-// @ts-ignore
 import colorNamer from "color-namer";
-// @ts-ignore
 import convert from "color-convert";
 
 export type Palette = {
